@@ -23,6 +23,7 @@ namespace LocalApp.Views
             // this.BindingContext = vm;
             vmsqlite = new TaskListViewModelSQLite();
             this.BindingContext = vmsqlite;
+
         }
         protected async override void OnAppearing()
         {
