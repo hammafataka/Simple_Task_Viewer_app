@@ -13,7 +13,7 @@ namespace LocalApp.Services
 {
     public class ApiService
     {
-        private const string url = "YOUR_API_URL";
+        private const string url = "http://192.168.42.1:100";
         
         public static async Task<List<T>> GetItems<T>(string controller) where T : new()
         {

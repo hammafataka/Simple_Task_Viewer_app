@@ -26,7 +26,7 @@
     </Shell.Resources>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
-        <Tab Title="Login"  >
+        <Tab Title="Welcome"  >
 
             <ShellContent ContentTemplate="{DataTemplate views:LoginPage}"/> 
         </Tab>

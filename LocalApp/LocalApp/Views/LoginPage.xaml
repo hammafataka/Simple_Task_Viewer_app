@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="LocalApp.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             Title="Welcome"
+            >
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label Text="Welcome back" x:Name="nameLbl" FontSize="Large" TextColor="Black"/>
+            <Label Text="welcome back" x:Name="nameLbl" FontSize="Large" TextColor="Black"/>
                 <Label Text="Click details to change user details" FontSize="Large" TextColor="Black" />
             <Button VerticalOptions="End"  Grid.Row="2" Grid.Column="1" Text="Details" Clicked="Button_Clicked" CornerRadius="15"/>
         </StackLayout>

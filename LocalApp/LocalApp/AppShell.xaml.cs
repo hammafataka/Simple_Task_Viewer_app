@@ -16,7 +16,8 @@ namespace LocalApp
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            LoginPage page = new LoginPage();
+            await App.Current.MainPage.Navigation.PushAsync(page);
         }
     }
 }

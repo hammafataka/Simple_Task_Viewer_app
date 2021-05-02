@@ -1,4 +1,5 @@
-﻿using LocalApp.ViewModels;
+﻿using LocalApp.Models;
+using LocalApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,20 @@ namespace LocalApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TaskListView : ContentPage
     {
-        TaskListViewModel vm;
+       // TaskListViewModel vm;
+        TaskListViewModelSQLite vmsqlite;
         public TaskListView()
         {
             InitializeComponent();
-            vm = new TaskListViewModel();
-            this.BindingContext = vm;
+            // vm = new TaskListViewModel();
+            // this.BindingContext = vm;
+            vmsqlite = new TaskListViewModelSQLite();
+            this.BindingContext = vmsqlite;
         }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await Task.Run(() => vm.LoadDataCommand.Execute(null));
-            vm.SelectedLocal = null;
+            await Task.Run(() => vmsqlite.LoadDataCommand.Execute(null));
 
         }
     }

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalaryApp.Views.UserDetails" Title="User Details">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Name:"
+                   TextColor="Black"
+                   FontSize="Large"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   />
+                <Label Text="Country:"
+                   TextColor="Black"
+                   FontSize="Large"
+                    Grid.Row="1"
+                   Grid.Column="0"
+                   />
+                <Label Text="Email:"
+                   TextColor="Black"
+                   FontSize="Large"
+                    Grid.Row="2"
+                   Grid.Column="0"
+                   />
+                <Label Text="Phone:"
+                   TextColor="Black"
+                   FontSize="Large"
+                    Grid.Row="3"
+                   Grid.Column="0"
+                   />
+                <Entry  x:Name="nameEntry" 
+                        Text="{Binding user.name}"
+                        
+                        TextColor="Black" 
+                        Keyboard="Default"  
+                        Grid.Row="0" 
+                        Grid.Column="1"/>
+                <Entry  x:Name="countryEntry" 
+                        TextColor="Black" 
+                        Keyboard="Default" 
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        Text="{Binding user.country}"
+                        />
+                
+                <Entry  x:Name="emailEntry" 
+                        TextColor="Black"
+                        Keyboard="Default" 
+                        Grid.Row="2" 
+                        Grid.Column="1"
+                        Text="{Binding user.email}"
+                        />
+                <Entry  x:Name="phoneEntry" 
+                        Text="{Binding user.phone}"
+                        TextColor="Black"
+                        Keyboard="Default" 
+                        Grid.Row="3" 
+                        Grid.Column="1"/>
+                <Button Text="Save" Command="{Binding SaveDetailsCommand}" CornerRadius="20" Grid.Row="4" Grid.Column="1"/>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

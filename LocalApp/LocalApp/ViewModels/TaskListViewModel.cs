@@ -21,32 +21,20 @@ namespace LocalApp.ViewModels
             get { return selectedLocal; }
             set {SetProperty(ref selectedLocal , value); }
         }
-        public string name
+        private User useR;
+        public User user
         {
-            get => Preferences.Get("name", null);
-            set
-            {
-                Preferences.Set("name", value);
-                OnpropertyChanged();
-            }
+            get { return useR; }
+            set => SetProperty(ref useR, value);
 
         }
-        public string country
-        {
-            get => Preferences.Get("country", null);
-            set
-            {
-                Preferences.Set("country", value);
-                OnpropertyChanged();
-            }
-
-        }
-
+        public string nametodisplay;
         public ICommand LoadDataCommand { private set; get; }
         public ICommand GoToDetailsCommand { private set; get; }
         public ICommand GoToNewCommand { private set; get; }
         public ICommand UpdateCommand { private set; get; }
         public ICommand DeleteCommand { private set; get; }
+        public ICommand SaveDetailsCommand { private set; get; }
 
         private readonly string controller = "api/locals";
         public async Task LoadData()
@@ -99,13 +87,29 @@ namespace LocalApp.ViewModels
             else
                 await App.Current.MainPage.DisplayAlert("Failed", "The Task has Not been Deleted", "OK");
         }
+        public  async Task save()
+        {
+            Preferences.Set("name", user.name);
+            Preferences.Set("country", user.country);
+            Preferences.Set("phone", user.phone);
+            Preferences.Set("email", user.email);
+            await App.Current.MainPage.DisplayAlert("Success!", "User details updated successfuly", "ok");
+        }
         public TaskListViewModel()
         {
+            user = new User()
+            {
+                name = Preferences.Get("name", null),
+                country = Preferences.Get("country", null),
+                email = Preferences.Get("email", null),
+                phone = Preferences.Get("phone", null),
+            };
             locals = new ObservableCollection<local>();
             LoadDataCommand = new Command(async () => await LoadData());
             DeleteCommand = new Command(async () => await Delete());
             UpdateCommand = new Command(async () => await Update());
             GoToNewCommand = new Command(async () => await Add());
+            SaveDetailsCommand = new Command(async()=>await save());
 
         }
     }

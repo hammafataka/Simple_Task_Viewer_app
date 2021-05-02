@@ -1,4 +1,6 @@
-﻿using LocalApp.ViewModels;
+﻿using LocalApp.Models;
+using LocalApp.ViewModels;
+using SalaryApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +14,24 @@ namespace LocalApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        TaskListViewModel welcome;
+        TaskListViewModel vm;
         public LoginPage()
         {
             InitializeComponent();
-            welcome = new TaskListViewModel();
+            vm = new TaskListViewModel();
+            this.BindingContext = vm;
         }
-        protected async override void OnAppearing()
+        protected  override void OnAppearing()
         {
-   
             base.OnAppearing();
-            if (welcome.name == null)
-            {
-                string name = await DisplayPromptAsync("Welcome", "Plase enter your name..", "OK", "Cancel");
-                string country = await DisplayPromptAsync("Welcome", "Plase enter your country name..", "OK", "Cancel");
-                welcome.name = name;
-                welcome.country = country;
-            }
-            else
-            {
-                nameLbl.Text = "Welcome Back " + welcome.name;
-            }
+            nameLbl.Text = "welcome back" + vm.nametodisplay;
         }
+
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            string name = await DisplayPromptAsync("Welcome", "Plase enter your name..", "OK", "Cancel");
-            string country = await DisplayPromptAsync("Welcome", "Plase enter your country name..", "OK", "Cancel");
-            welcome.name = name;
-            welcome.country = country;
-            nameLbl.Text = "Welcome Back " + welcome.name;
+            UserDetails userDetails = new UserDetails();
+            await App.Current.MainPage.Navigation.PushAsync(userDetails);
         }
     }
 }
